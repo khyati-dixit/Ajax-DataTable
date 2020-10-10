@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <div class="container py-4">
+       <h3>User Details</h3>
+        <div id="dataTable_wrapper"></div>
+        <table id="dataTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>User Id</th>
+                    <th>Full Name</th>
+                    <th>E-Mail</th>
+                    <th>Civil Id Number</th>
+                    <th>CarLicense</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+            $('#dataTable').DataTable({
+                "ajax": {
+                    url: '/Home/GetData',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "UserId" },
+                    { "data": "FullName" },
+                    { "data": "UserEmail" },
+                    { "data": "CivilIdNumber" },
+                    { "data": "CarLicense" }
+
+                ]
+            });
+        });
+    </script>
+</body>
+</html>
+
+
